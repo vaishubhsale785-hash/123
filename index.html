@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Furion Cars | Driver Portal</title>
-  <!-- Google Fonts: Exo 2 for automotive feel + Inter fallback -->
-  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+  <title>Furion Cars | Access Denied? Access Granted.</title>
+  <!-- Google Fonts + modern mix -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <!-- Font Awesome 6 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
@@ -16,564 +16,649 @@
     }
 
     body {
-      font-family: 'Exo 2', 'Inter', sans-serif;
+      font-family: 'Space Grotesk', sans-serif;
       min-height: 100vh;
-      background: radial-gradient(ellipse at 30% 40%, #0a0f1a 0%, #03060c 100%);
-      position: relative;
+      background: linear-gradient(145deg, #EFF3F8 0%, #F0F4FA 100%);
+      transition: all 0.2s;
+    }
+
+    /* modern light/dark friendly — fresh and bright but premium */
+    .auth-page, .dashboard-page {
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 1.5rem;
     }
 
-    /* dynamic carbon-fiber + racing light overlay */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 2px, transparent 2px, transparent 8px);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at 70% 20%, rgba(230, 80, 40, 0.12), transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* main card — performance glass + deep metallic border */
+    /* glassmorphism card — light & airy */
     .furion-card {
       width: 100%;
-      max-width: 500px;
-      background: rgba(8, 14, 22, 0.75);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-radius: 2.2rem;
-      border: 1px solid rgba(230, 80, 40, 0.5);
-      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(230, 80, 40, 0.2) inset, 0 0 20px rgba(230, 80, 40, 0.2);
-      padding: 2rem 2rem 2.2rem;
-      transition: all 0.3s ease;
-      z-index: 2;
-      position: relative;
+      max-width: 480px;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(8px);
+      border-radius: 2.5rem;
+      box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+      padding: 2rem 1.8rem 2.2rem;
+      transition: all 0.3s;
+      border: 1px solid rgba(255,255,240,0.6);
     }
 
-    /* Furion Cars branding — aggressive & elegant */
+    /* brand */
     .brand {
       text-align: center;
       margin-bottom: 1.6rem;
-      position: relative;
     }
-    .brand-icon {
-      font-size: 3rem;
-      background: linear-gradient(135deg, #FF6A3D, #D93B21);
+    .brand i {
+      font-size: 2.8rem;
+      background: linear-gradient(135deg, #E84C22, #C73C14);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      display: inline-block;
-      filter: drop-shadow(0 0 6px rgba(230, 80, 40, 0.6));
     }
     .brand h1 {
-      font-size: 2.2rem;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      background: linear-gradient(115deg, #FFFFFF, #FFB08C);
+      font-size: 2rem;
+      font-weight: 700;
+      background: linear-gradient(120deg, #121826, #2C3E50);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      margin-top: 0.4rem;
-      text-transform: uppercase;
+      letter-spacing: -0.5px;
     }
-    .brand .tagline {
-      font-size: 0.7rem;
-      letter-spacing: 2px;
+    .brand p {
+      color: #5F6C84;
+      font-size: 0.8rem;
       font-weight: 500;
-      color: #FFA273;
-      text-transform: uppercase;
-      margin-top: 0.3rem;
-      word-break: keep-all;
     }
 
-    /* Tabs — racing style */
-    .tabs-drive {
-      display: flex;
-      gap: 0.8rem;
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 4rem;
-      padding: 0.3rem;
-      margin-bottom: 2rem;
-      border: 1px solid rgba(255, 90, 40, 0.3);
-    }
-    .tab-drive-btn {
-      flex: 1;
-      background: transparent;
-      border: none;
-      font-family: 'Exo 2', sans-serif;
-      font-weight: 700;
-      font-size: 0.95rem;
-      padding: 0.7rem 0;
-      border-radius: 3rem;
-      cursor: pointer;
-      color: #B9C7D9;
-      transition: all 0.25s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      letter-spacing: 0.5px;
-    }
-    .tab-drive-btn i {
-      font-size: 0.9rem;
-    }
-    .tab-drive-btn.active {
-      background: linear-gradient(95deg, #E64525, #BF2E10);
-      color: white;
-      box-shadow: 0 4px 12px rgba(230, 60, 30, 0.4);
-    }
-    .tab-drive-btn:not(.active):hover {
-      background: rgba(230, 80, 40, 0.2);
-      color: #FFB28C;
-    }
-
-    /* form groups */
-    .form-wrapper {
-      transition: all 0.2s;
-    }
-    .drive-form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.4rem;
-    }
-    .hidden-form {
-      display: none;
-    }
-
-    /* premium input fields */
-    .input-field {
+    /* input groups modern */
+    .input-group {
+      margin-bottom: 1.2rem;
       position: relative;
+    }
+    .input-group label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #3E4A62;
+      margin-bottom: 0.4rem;
+    }
+    .input-field {
       display: flex;
       align-items: center;
-      background: rgba(20, 28, 40, 0.7);
-      border-radius: 1.5rem;
-      border: 1px solid rgba(255, 100, 50, 0.4);
+      background: #F8FAFE;
+      border-radius: 1.2rem;
+      border: 1px solid #E2E8F0;
       transition: all 0.2s;
     }
     .input-field:focus-within {
-      border-color: #FF5722;
-      background: rgba(30, 40, 55, 0.9);
-      box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.3);
+      border-color: #E84C22;
+      box-shadow: 0 0 0 3px rgba(232, 76, 34, 0.15);
+      background: white;
     }
     .input-field i {
-      padding-left: 1.2rem;
-      font-size: 1.1rem;
-      color: #FF7540;
-      width: 2.6rem;
+      padding-left: 1rem;
+      color: #E84C22;
+      font-size: 1rem;
     }
     .input-field input {
       background: transparent;
       border: none;
-      padding: 0.9rem 1rem 0.9rem 0;
-      font-size: 1rem;
-      color: #F0F3FA;
-      font-weight: 500;
+      padding: 0.85rem 1rem 0.85rem 0.7rem;
+      font-size: 0.95rem;
       width: 100%;
       outline: none;
-      font-family: 'Inter', monospace;
+      font-family: 'Space Grotesk', monospace;
+      font-weight: 500;
+      color: #1E293B;
     }
     .input-field input::placeholder {
-      color: rgba(200, 210, 230, 0.5);
+      color: #94A3B8;
       font-weight: 400;
-      font-size: 0.85rem;
     }
 
-    /* primary CTA button — inferno style */
-    .btn-inferno {
-      background: linear-gradient(105deg, #FF4A1C, #D82E0A);
+    /* realtime verification row */
+    .verify-row {
+      display: flex;
+      gap: 0.8rem;
+      align-items: center;
+      margin-top: 0.25rem;
+    }
+    .verify-row .input-field {
+      flex: 1;
+    }
+    .send-code-btn {
+      background: #EFF3F8;
+      border: 1px solid #E2E8F0;
+      padding: 0 1rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      font-size: 0.75rem;
+      color: #E84C22;
+      cursor: pointer;
+      transition: 0.2s;
+      height: 48px;
+      font-family: inherit;
+      white-space: nowrap;
+    }
+    .send-code-btn:hover:not(:disabled) {
+      background: #E84C22;
+      color: white;
+      border-color: #E84C22;
+    }
+    .send-code-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .timer-text {
+      font-size: 0.7rem;
+      color: #3E5A7A;
+      margin-left: 0.3rem;
+    }
+
+    /* action btn */
+    .action-btn {
+      background: linear-gradient(105deg, #E84C22, #C73C14);
       border: none;
+      width: 100%;
       padding: 0.9rem;
-      border-radius: 2.5rem;
-      font-weight: 800;
+      border-radius: 2rem;
+      font-weight: 700;
       font-size: 1rem;
-      font-family: 'Exo 2', sans-serif;
       color: white;
       cursor: pointer;
-      transition: all 0.25s ease;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+      transition: all 0.2s;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.6rem;
-      letter-spacing: 0.8px;
-      text-transform: uppercase;
+      gap: 0.5rem;
+      margin-top: 0.8rem;
+      box-shadow: 0 5px 12px rgba(232,76,34,0.2);
     }
-    .btn-inferno:hover {
-      background: linear-gradient(105deg, #FF6538, #E63E18);
+    .action-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 22px rgba(230, 60, 20, 0.5);
-    }
-    .btn-inferno:active {
-      transform: translateY(1px);
+      background: linear-gradient(105deg, #F05A30, #D9441C);
+      box-shadow: 0 8px 18px rgba(232,76,34,0.3);
     }
 
-    /* alert messages (clean, not branded with redundant text) */
-    .status-alert {
-      background: rgba(0, 0, 0, 0.55);
-      border-radius: 1.5rem;
-      padding: 0.7rem 1rem;
-      font-size: 0.8rem;
+    /* message */
+    .info-message {
+      background: #F1F5F9;
+      border-radius: 1.2rem;
+      padding: 0.6rem 1rem;
+      font-size: 0.75rem;
       text-align: center;
-      color: #FFD0B5;
-      border-left: 3px solid #FF5722;
-      font-weight: 500;
-      backdrop-filter: blur(4px);
-      margin-top: 0.2rem;
-    }
-
-    /* no extra demo hints or redundant footers — only necessary micro interactions */
-    .extra-note {
       margin-top: 1rem;
-      font-size: 0.7rem;
-      text-align: center;
-      color: #5F738C;
+      color: #2C3E50;
+      border-left: 3px solid #E84C22;
+    }
+
+    /* dashboard styles */
+    .dashboard-container {
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .dashboard-header {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1.2rem 2rem;
       display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+    }
+    .logo-area h2 {
+      font-size: 1.6rem;
+      background: linear-gradient(135deg, #E84C22, #B8320E);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .user-welcome {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .avatar {
+      background: #FEE2E2;
+      width: 45px;
+      height: 45px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
       justify-content: center;
-      gap: 12px;
+      color: #E84C22;
+      font-weight: bold;
     }
-    .extra-note span i {
-      margin-right: 5px;
-      font-size: 0.65rem;
-      color: #FF7043;
+    .logout-btn {
+      background: transparent;
+      border: 1px solid #E2E8F0;
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.2s;
     }
-
-    /* shake animation */
-    @keyframes furionShake {
-      0% { transform: translateX(0); }
-      20% { transform: translateX(-5px); }
-      40% { transform: translateX(5px); }
-      60% { transform: translateX(-3px); }
-      80% { transform: translateX(3px); }
-      100% { transform: translateX(0); }
+    .logout-btn:hover {
+      background: #FFF1ED;
+      border-color: #E84C22;
     }
-    .shake-effect {
-      animation: furionShake 0.35s ease-in-out 0s 1;
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
     }
-
-    @media (max-width: 550px) {
+    .card-dash {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      transition: all 0.2s;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+      border: 1px solid #EDF2F7;
+    }
+    .card-dash i {
+      font-size: 2rem;
+      color: #E84C22;
+      margin-bottom: 0.8rem;
+    }
+    .card-dash h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.4rem;
+    }
+    .card-dash p {
+      color: #5B6E8C;
+      font-size: 0.85rem;
+    }
+    .hide {
+      display: none;
+    }
+    button {
+      font-family: inherit;
+    }
+    @media (max-width: 650px) {
+      .dashboard-header {
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: flex-start;
+      }
       .furion-card {
-        padding: 1.5rem 1.3rem 1.8rem;
-      }
-      .brand h1 {
-        font-size: 1.7rem;
-      }
-      .tab-drive-btn {
-        font-size: 0.8rem;
-        padding: 0.55rem 0;
-      }
-      .input-field input {
-        padding: 0.75rem 1rem 0.75rem 0;
+        padding: 1.5rem;
       }
     }
   </style>
 </head>
 <body>
-<div class="furion-card">
-  <div class="brand">
-    <i class="fas fa-car-side brand-icon"></i>
-    <h1>FURION CARS</h1>
-    <div class="tagline"><i class="fas fa-bolt"></i> UNLEASH THE DRIVE</div>
-  </div>
-
-  <div class="tabs-drive">
-    <button id="furionLoginTab" class="tab-drive-btn active"><i class="fas fa-key"></i> DRIVER LOGIN</button>
-    <button id="furionRegTab" class="tab-drive-btn"><i class="fas fa-id-card"></i> REGISTER</button>
-  </div>
-
-  <div class="form-wrapper">
-    <!-- LOGIN FORM (default 123 / 123 works but no extra hint text) -->
-    <div id="furionLoginForm" class="drive-form">
-      <div class="input-field">
-        <i class="fas fa-user-astronaut"></i>
-        <input type="text" id="loginUsernameF" placeholder="Driver ID / Username" autocomplete="off" value="123">
-      </div>
-      <div class="input-field">
-        <i class="fas fa-fingerprint"></i>
-        <input type="password" id="loginPasswordF" placeholder="Access Code" value="123">
-      </div>
-      <button id="doFurionLogin" class="btn-inferno"><i class="fas fa-rocket"></i> IGNITION</button>
-      <div id="loginStatusMsg" class="status-alert"><i class="fas fa-shield-alt"></i> Enter your credentials</div>
+<!-- LOGIN + REGISTER SECTION (with real-time email verification) -->
+<div id="authSection" class="auth-page">
+  <div class="furion-card">
+    <div class="brand">
+      <i class="fas fa-car"></i>
+      <h1>FURION CARS</h1>
+      <p>modern velocity • secure access</p>
     </div>
 
-    <!-- REGISTER FORM (no demo mentioning default login) -->
-    <div id="furionRegisterForm" class="drive-form hidden-form">
-      <div class="input-field">
-        <i class="fas fa-user-tie"></i>
-        <input type="text" id="regFullname" placeholder="Full name / Username" autocomplete="off">
+    <!-- Tabs: Login / Register -->
+    <div style="display: flex; gap: 1rem; margin-bottom: 1.8rem; background: #F1F4F9; padding: 0.3rem; border-radius: 3rem;">
+      <button id="simpleLoginTab" class="tab-auth" style="flex:1; background: #E84C22; border:none; border-radius: 2rem; padding: 0.6rem; font-weight:600; color:white; cursor:pointer;">LOGIN</button>
+      <button id="simpleRegTab" class="tab-auth" style="flex:1; background: transparent; border:none; border-radius: 2rem; padding: 0.6rem; font-weight:600; color:#4A5A7A; cursor:pointer;">REGISTER</button>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <div id="loginPanel">
+      <div class="input-group">
+        <label><i class="far fa-user"></i> EMAIL / USERNAME</label>
+        <div class="input-field">
+          <i class="fas fa-envelope"></i>
+          <input type="text" id="loginEmailUser" placeholder="hello@furion.com or username" value="123@furion.com">
+        </div>
       </div>
-      <div class="input-field">
-        <i class="fas fa-envelope"></i>
-        <input type="email" id="regEmailF" placeholder="Email address">
+      <div class="input-group">
+        <label><i class="fas fa-lock"></i> PASSWORD</label>
+        <div class="input-field">
+          <i class="fas fa-key"></i>
+          <input type="password" id="loginPassword" placeholder="••••••" value="123">
+        </div>
       </div>
-      <div class="input-field">
-        <i class="fas fa-lock"></i>
-        <input type="password" id="regPasswordF" placeholder="Create password (min. 4 chars)">
+      <button id="doLoginBtnMain" class="action-btn"><i class="fas fa-sign-in-alt"></i> LOGIN / IGNITION</button>
+      <div id="loginFeedback" class="info-message"><i class="fas fa-info-circle"></i> Use default: 123@furion.com / 123</div>
+    </div>
+
+    <!-- REGISTER FORM with EMAIL VERIFICATION (real-time) -->
+    <div id="registerPanel" style="display:none;">
+      <div class="input-group">
+        <label>FULL NAME</label>
+        <div class="input-field">
+          <i class="fas fa-user"></i>
+          <input type="text" id="regName" placeholder="Alex Rivera">
+        </div>
       </div>
-      <div class="input-field">
-        <i class="fas fa-check-double"></i>
-        <input type="password" id="regConfirmF" placeholder="Confirm passcode">
+      <div class="input-group">
+        <label>EMAIL ADDRESS</label>
+        <div class="input-field">
+          <i class="fas fa-envelope"></i>
+          <input type="email" id="regEmailAddress" placeholder="driver@furion.com">
+        </div>
       </div>
-      <button id="doFurionRegister" class="btn-inferno"><i class="fas fa-user-plus"></i> JOIN FURION</button>
-      <div id="regStatusMsg" class="status-alert"><i class="fas fa-flag-checkered"></i> Create your Furion garage account</div>
+      <div class="input-group">
+        <label>PASSWORD</label>
+        <div class="input-field">
+          <i class="fas fa-lock"></i>
+          <input type="password" id="regPass" placeholder="min 4 chars">
+        </div>
+      </div>
+      <div class="input-group">
+        <label>EMAIL VERIFICATION</label>
+        <div class="verify-row">
+          <div class="input-field">
+            <i class="fas fa-code"></i>
+            <input type="text" id="verificationCode" placeholder="6-digit code" maxlength="6">
+          </div>
+          <button id="sendCodeBtn" class="send-code-btn">SEND CODE</button>
+        </div>
+        <div id="verifyStatus" style="font-size:0.7rem; margin-top: 5px; color:#4B6A8B;"></div>
+      </div>
+      <button id="doRegisterFinal" class="action-btn"><i class="fas fa-user-check"></i> REGISTER & VERIFY</button>
+      <div id="regFeedback" class="info-message"><i class="fas fa-shield-alt"></i> Verify email to complete registration</div>
     </div>
   </div>
-  <div class="extra-note">
-    <span><i class="fas fa-microchip"></i> Biometric ready</span>
-    <span><i class="fas fa-shield-alt"></i> Encrypted access</span>
+</div>
+
+<!-- DASHBOARD (hidden initially) -->
+<div id="dashboardSection" class="dashboard-page hide">
+  <div class="dashboard-container">
+    <div class="dashboard-header">
+      <div class="logo-area">
+        <h2><i class="fas fa-bolt"></i> FURION CARS</h2>
+        <p style="font-size:0.75rem;">drive the future</p>
+      </div>
+      <div class="user-welcome">
+        <div class="avatar" id="userAvatarDisplay"><i class="fas fa-user-astronaut"></i></div>
+        <span id="welcomeUserName" style="font-weight:600;">Driver</span>
+        <button id="logoutFromDash" class="logout-btn"><i class="fas fa-power-off"></i> EXIT</button>
+      </div>
+    </div>
+    <div class="dashboard-grid">
+      <div class="card-dash"><i class="fas fa-tachometer-alt"></i><h3>Live Metrics</h3><p>Battery: 94% • Range: 420km</p></div>
+      <div class="card-dash"><i class="fas fa-map-marked-alt"></i><h3>Recent Drives</h3><p>Coastal highway • 23 min ago</p></div>
+      <div class="card-dash"><i class="fas fa-charging-station"></i><h3>Energy Hub</h3><p>Fast charging available</p></div>
+      <div class="card-dash"><i class="fas fa-crown"></i><h3>Furion Prime</h3><p>Access to exclusive events</p></div>
+    </div>
+    <div class="info-message" style="margin-top:1.5rem; text-align:center;"><i class="fas fa-microchip"></i> Welcome to your Furion command center — enjoy the ride.</div>
   </div>
 </div>
 
 <script>
   (function() {
-    // DOM elements
-    const loginTab = document.getElementById('furionLoginTab');
-    const regTab = document.getElementById('furionRegTab');
-    const loginFormDiv = document.getElementById('furionLoginForm');
-    const registerFormDiv = document.getElementById('furionRegisterForm');
-    const loginBtn = document.getElementById('doFurionLogin');
-    const regBtn = document.getElementById('doFurionRegister');
-    const loginMsg = document.getElementById('loginStatusMsg');
-    const regMsg = document.getElementById('regStatusMsg');
+    // ---- In-memory email code storage (simulate real-time verification) ----
+    let generatedCode = null;
+    let codeExpiry = null;
+    let pendingEmailForVerification = null;
+    let countdownInterval = null;
+    const sendCodeBtn = document.getElementById('sendCodeBtn');
+    const verifyCodeInput = document.getElementById('verificationCode');
+    const verifyStatusSpan = document.getElementById('verifyStatus');
+    const regEmailField = document.getElementById('regEmailAddress');
+    const regNameField = document.getElementById('regName');
+    const regPassField = document.getElementById('regPass');
 
-    // Inputs
-    const loginUserInput = document.getElementById('loginUsernameF');
-    const loginPassInput = document.getElementById('loginPasswordF');
-    const regNameInput = document.getElementById('regFullname');
-    const regEmailInput = document.getElementById('regEmailF');
-    const regPassInput = document.getElementById('regPasswordF');
-    const regConfirmInput = document.getElementById('regConfirmF');
-
-    // Helper: display status messages (clean, minimal)
-    let loginTimer, regTimer;
-    function setLoginMessage(text, isError = false) {
-      if (loginTimer) clearTimeout(loginTimer);
-      loginMsg.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-check-circle'}"></i> ${text}`;
-      loginMsg.style.borderLeftColor = isError ? '#FF5E4A' : '#39D0A0';
-      loginTimer = setTimeout(() => {
-        if (loginMsg) {
-          loginMsg.innerHTML = `<i class="fas fa-shield-alt"></i> Enter your credentials`;
-          loginMsg.style.borderLeftColor = '#FF5722';
-        }
-      }, 2800);
-    }
-    function setRegMessage(text, isError = false, isSuccess = false) {
-      if (regTimer) clearTimeout(regTimer);
-      let icon = 'fa-info-circle';
-      if (isSuccess) icon = 'fa-check-circle';
-      else if (isError) icon = 'fa-exclamation-circle';
-      regMsg.innerHTML = `<i class="fas ${icon}"></i> ${text}`;
-      regMsg.style.borderLeftColor = isSuccess ? '#39D0A0' : (isError ? '#FF5E4A' : '#FF9F4A');
-      regTimer = setTimeout(() => {
-        if (regMsg) {
-          regMsg.innerHTML = `<i class="fas fa-flag-checkered"></i> Create your Furion garage account`;
-          regMsg.style.borderLeftColor = '#FF5722';
-        }
-      }, 2800);
-    }
-
-    // ---- CORE AUTH LOGIC ----
-    // DEFAULT CREDENTIALS: login = "123", password = "123" (no visible text hints)
-    // Additionally, we support registered users (stored in localStorage)
-    
-    function performFurionLogin() {
-      const username = loginUserInput.value.trim();
-      const password = loginPassInput.value;
-      
-      // 1) DEFAULT FURION MASTER ACCESS
-      if (username === "123" && password === "123") {
-        setLoginMessage("✅ Ignition ON • Welcome to Furion Garage", false);
-        // subtle success animation
-        loginBtn.style.transform = "scale(0.97)";
-        setTimeout(() => { loginBtn.style.transform = ""; }, 150);
-        // optional simulated garage effect
-        return;
-      }
-      
-      // 2) Check registered drivers from localStorage (Furion database)
-      const storedDrivers = localStorage.getItem("furion_drivers");
-      let driversArray = [];
-      if (storedDrivers) {
-        try {
-          driversArray = JSON.parse(storedDrivers);
-        } catch(e) { driversArray = []; }
-      }
-      const matchedDriver = driversArray.find(driver => driver.username === username && driver.password === password);
-      if (matchedDriver) {
-        setLoginMessage(`🏁 Welcome back, ${matchedDriver.username} • Drive ready`, false);
-        loginBtn.style.transform = "scale(0.97)";
-        setTimeout(() => { loginBtn.style.transform = ""; }, 150);
-        return;
-      }
-      
-      // invalid access
-      setLoginMessage("⛔ Access denied • Check driver credentials", true);
-      loginFormDiv.classList.add('shake-effect');
-      setTimeout(() => { loginFormDiv.classList.remove('shake-effect'); }, 400);
-    }
-    
-    // Register logic (no mentions of default demo)
-    function performFurionRegister() {
-      const fullUsername = regNameInput.value.trim();
-      const email = regEmailInput.value.trim();
-      const pwd = regPassInput.value.trim();
-      const confirmPwd = regConfirmInput.value.trim();
-      
-      // validations
-      if (!fullUsername || fullUsername.length < 3) {
-        setRegMessage("Username must be at least 3 characters", true);
-        return;
-      }
-      if (fullUsername === "123") {
-        setRegMessage("Reserved ID: cannot register '123'", true);
-        return;
-      }
-      if (!email || !email.includes('@') || !email.includes('.')) {
-        setRegMessage("Valid email required for Furion pass", true);
-        return;
-      }
-      if (!pwd || pwd.length < 4) {
-        setRegMessage("Password must be min 4 characters", true);
-        return;
-      }
-      if (pwd !== confirmPwd) {
-        setRegMessage("Access codes do not match", true);
-        return;
-      }
-      
-      // check duplicates
-      let existingDrivers = [];
-      const rawDrivers = localStorage.getItem("furion_drivers");
-      if (rawDrivers) {
-        try {
-          existingDrivers = JSON.parse(rawDrivers);
-        } catch(e) { existingDrivers = []; }
-      }
-      if (existingDrivers.some(d => d.username === fullUsername)) {
-        setRegMessage("Driver ID already exists. Choose another callsign", true);
-        return;
-      }
-      
-      // create new driver profile
-      const newDriver = {
-        username: fullUsername,
-        password: pwd,
-        email: email,
-        joined: new Date().toISOString()
-      };
-      existingDrivers.push(newDriver);
-      localStorage.setItem("furion_drivers", JSON.stringify(existingDrivers));
-      
-      // Success and auto switch to login + prefill username
-      setRegMessage(`🔥 Furion access created! Welcome ${fullUsername}.`, false, true);
+    // Helper: Update UI + Messages
+    function showLoginMessage(msg, isError = false) {
+      const fb = document.getElementById('loginFeedback');
+      fb.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-check-circle'}"></i> ${msg}`;
+      fb.style.borderLeftColor = isError ? '#E84C22' : '#2C9A6E';
       setTimeout(() => {
-        // switch to login tab after success, prefill username for convenience
-        loginTab.click();
-        if (loginUserInput) loginUserInput.value = fullUsername;
-        loginPassInput.value = '';
-        setLoginMessage(`New driver registered! Enter your passcode.`, false);
-      }, 1400);
-      
-      // Clear registration fields
-      regNameInput.value = '';
-      regEmailInput.value = '';
-      regPassInput.value = '';
-      regConfirmInput.value = '';
+        if(document.getElementById('loginFeedback') && !document.getElementById('loginFeedback').innerHTML.includes('Use default')) {
+          if(!isError) return;
+          fb.innerHTML = `<i class="fas fa-info-circle"></i> Use default: 123@furion.com / 123`;
+          fb.style.borderLeftColor = '#E84C22';
+        }
+      }, 3000);
     }
-    
-    // Event binding
-    loginBtn.onclick = (e) => {
-      e.preventDefault();
-      performFurionLogin();
-    };
-    regBtn.onclick = (e) => {
-      e.preventDefault();
-      performFurionRegister();
-    };
-    
-    // Enter key submit for login fields
-    const loginFields = [loginUserInput, loginPassInput];
-    loginFields.forEach(field => {
-      field.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          performFurionLogin();
+    function showRegMessage(msg, isError = true, isSuccess = false) {
+      const fb = document.getElementById('regFeedback');
+      fb.innerHTML = `<i class="fas ${isSuccess ? 'fa-check-circle' : (isError ? 'fa-exclamation-circle' : 'fa-info-circle')}"></i> ${msg}`;
+      fb.style.borderLeftColor = isSuccess ? '#2C9A6E' : (isError ? '#E84C22' : '#F4A261');
+      setTimeout(() => {
+        if(document.getElementById('regFeedback') && !isSuccess)
+          fb.innerHTML = `<i class="fas fa-shield-alt"></i> Verify email to complete registration`;
+      }, 3500);
+    }
+
+    // generate 6-digit random code
+    function generateVerificationCode() {
+      return Math.floor(100000 + Math.random() * 900000).toString();
+    }
+
+    // send code simulation (real-time email simulation)
+    function sendEmailCode() {
+      const email = regEmailField.value.trim();
+      if(!email || !email.includes('@')) {
+        verifyStatusSpan.innerHTML = '<i class="fas fa-times-circle"></i> Enter valid email first';
+        verifyStatusSpan.style.color = '#E84C22';
+        return false;
+      }
+      // generate fresh code
+      generatedCode = generateVerificationCode();
+      codeExpiry = Date.now() + 5 * 60 * 1000; // 5 min
+      pendingEmailForVerification = email;
+      verifyStatusSpan.innerHTML = `<i class="fas fa-paper-plane"></i> Verification code sent to ${email} (demo: ${generatedCode})`;
+      verifyStatusSpan.style.color = '#2C6E2F';
+      // start countdown on button
+      let secondsLeft = 60;
+      if(countdownInterval) clearInterval(countdownInterval);
+      sendCodeBtn.disabled = true;
+      countdownInterval = setInterval(() => {
+        if(secondsLeft <= 0) {
+          clearInterval(countdownInterval);
+          sendCodeBtn.disabled = false;
+          sendCodeBtn.innerText = "SEND CODE";
+          countdownInterval = null;
+        } else {
+          sendCodeBtn.innerText = `RESEND (${secondsLeft}s)`;
+          secondsLeft--;
         }
-      });
-    });
-    // Enter key for registration
-    const regFields = [regNameInput, regEmailInput, regPassInput, regConfirmInput];
-    regFields.forEach(field => {
-      field.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          performFurionRegister();
+      }, 1000);
+      // auto-clear status after 8 sec keep info
+      setTimeout(() => {
+        if(verifyStatusSpan.innerHTML.includes('Verification code sent')) {
+          if(!verifyStatusSpan.innerHTML.includes('verified')) {
+            verifyStatusSpan.innerHTML = `<i class="fas fa-envelope-open-text"></i> Enter the 6-digit code`;
+          }
         }
-      });
+      }, 5000);
+      return true;
+    }
+
+    sendCodeBtn.addEventListener('click', () => {
+      if(sendCodeBtn.disabled) return;
+      sendEmailCode();
     });
-    
-    // Tab switching: clean and no residual hint messages
+
+    // verify code function
+    function isCodeValid(inputCode) {
+      if(!generatedCode || !codeExpiry || Date.now() > codeExpiry) {
+        return { valid: false, reason: 'Code expired or not requested. Request new code.' };
+      }
+      if(inputCode === generatedCode) {
+        return { valid: true };
+      } else {
+        return { valid: false, reason: 'Invalid verification code.' };
+      }
+    }
+
+    // ---------- REGISTRATION LOGIC (with email verification) ----------
+    function registerNewUser() {
+      const name = regNameField.value.trim();
+      const email = regEmailField.value.trim();
+      const password = regPassField.value.trim();
+      const verificationCode = verifyCodeInput.value.trim();
+
+      if(!name || name.length < 2) {
+        showRegMessage("Full name required", true);
+        return;
+      }
+      if(!email || !email.includes('@')) {
+        showRegMessage("Valid email required", true);
+        return;
+      }
+      if(!password || password.length < 4) {
+        showRegMessage("Password must be at least 4 characters", true);
+        return;
+      }
+      if(!verificationCode) {
+        showRegMessage("Please enter verification code", true);
+        return;
+      }
+      // verify code
+      const codeCheck = isCodeValid(verificationCode);
+      if(!codeCheck.valid) {
+        showRegMessage(codeCheck.reason, true);
+        return;
+      }
+      // check if email already exists in localStorage
+      let users = JSON.parse(localStorage.getItem('furion_users') || '[]');
+      if(users.some(u => u.email === email)) {
+        showRegMessage("Email already registered. Try login.", true);
+        return;
+      }
+      // create user
+      const newUser = {
+        id: Date.now(),
+        name: name,
+        email: email,
+        password: password,
+        createdAt: new Date().toISOString()
+      };
+      users.push(newUser);
+      localStorage.setItem('furion_users', JSON.stringify(users));
+      showRegMessage(`✅ Registration successful! Welcome ${name}. Please login.`, false, true);
+      // reset register form and switch to login
+      setTimeout(() => {
+        document.getElementById('simpleLoginTab').click();
+        // prefill login email
+        document.getElementById('loginEmailUser').value = email;
+        document.getElementById('loginPassword').value = '';
+        // clear register fields
+        regNameField.value = '';
+        regEmailField.value = '';
+        regPassField.value = '';
+        verifyCodeInput.value = '';
+        generatedCode = null;
+        if(countdownInterval) clearInterval(countdownInterval);
+        sendCodeBtn.disabled = false;
+        sendCodeBtn.innerText = "SEND CODE";
+        verifyStatusSpan.innerHTML = '';
+      }, 1500);
+    }
+
+    // LOGIN function: Supports default 123 / 123 AND registered users (email & pass)
+    function handleLogin() {
+      const identifier = document.getElementById('loginEmailUser').value.trim();
+      const password = document.getElementById('loginPassword').value.trim();
+
+      // DEFAULT: special 123/123 (backward compatibility)
+      if(identifier === "123" && password === "123") {
+        showLoginMessage("✅ Login successful! Redirecting to dashboard...", false);
+        setTimeout(() => {
+          enterDashboard("Furion Master");
+        }, 800);
+        return;
+      }
+      // DEFAULT EMAIL variant (123@furion.com / 123) also allowed by requirement
+      if((identifier === "123@furion.com" || identifier === "123") && password === "123") {
+        showLoginMessage("✅ Welcome back! Access granted.", false);
+        setTimeout(() => {
+          enterDashboard("Furion Driver");
+        }, 800);
+        return;
+      }
+      // check registered users
+      const users = JSON.parse(localStorage.getItem('furion_users') || '[]');
+      const matchedUser = users.find(u => (u.email === identifier || u.name === identifier) && u.password === password);
+      if(matchedUser) {
+        showLoginMessage(`✅ Login successful! Welcome ${matchedUser.name}.`, false);
+        setTimeout(() => {
+          enterDashboard(matchedUser.name);
+        }, 800);
+      } else {
+        showLoginMessage("❌ Invalid credentials. Try 123 / 123 or registered account.", true);
+      }
+    }
+
+    // Dashboard rendering
+    function enterDashboard(userName) {
+      document.getElementById('authSection').classList.add('hide');
+      document.getElementById('dashboardSection').classList.remove('hide');
+      document.getElementById('welcomeUserName').innerHTML = userName;
+      const avatarDiv = document.getElementById('userAvatarDisplay');
+      avatarDiv.innerHTML = `<i class="fas fa-user-astronaut"></i>`;
+    }
+
+    function logout() {
+      document.getElementById('dashboardSection').classList.add('hide');
+      document.getElementById('authSection').classList.remove('hide');
+      // reset login fields to default suggestion
+      document.getElementById('loginEmailUser').value = "123@furion.com";
+      document.getElementById('loginPassword').value = "123";
+      const loginFeed = document.getElementById('loginFeedback');
+      loginFeed.innerHTML = `<i class="fas fa-info-circle"></i> Use default: 123@furion.com / 123`;
+      // clear register fields
+      if(regNameField) regNameField.value = '';
+      if(regEmailField) regEmailField.value = '';
+      if(regPassField) regPassField.value = '';
+      if(verifyCodeInput) verifyCodeInput.value = '';
+      if(generatedCode) generatedCode = null;
+      if(countdownInterval) clearInterval(countdownInterval);
+      if(sendCodeBtn) {
+        sendCodeBtn.disabled = false;
+        sendCodeBtn.innerText = "SEND CODE";
+      }
+    }
+
+    // Tab switching (Login / Register)
+    const loginTabBtn = document.getElementById('simpleLoginTab');
+    const regTabBtn = document.getElementById('simpleRegTab');
+    const loginPanelDiv = document.getElementById('loginPanel');
+    const registerPanelDiv = document.getElementById('registerPanel');
+
     function switchToLogin() {
-      loginTab.classList.add('active');
-      regTab.classList.remove('active');
-      loginFormDiv.classList.remove('hidden-form');
-      registerFormDiv.classList.add('hidden-form');
-      // reset only login message to default neutral state
-      if (loginMsg) {
-        loginMsg.innerHTML = `<i class="fas fa-shield-alt"></i> Enter your credentials`;
-        loginMsg.style.borderLeftColor = '#FF5722';
-      }
-      // clear any register message residue
-      if (regMsg) {
-        regMsg.innerHTML = `<i class="fas fa-flag-checkered"></i> Create your Furion garage account`;
-        regMsg.style.borderLeftColor = '#FF5722';
-      }
+      loginTabBtn.style.background = "#E84C22";
+      loginTabBtn.style.color = "white";
+      regTabBtn.style.background = "transparent";
+      regTabBtn.style.color = "#4A5A7A";
+      loginPanelDiv.style.display = "block";
+      registerPanelDiv.style.display = "none";
     }
-    
     function switchToRegister() {
-      regTab.classList.add('active');
-      loginTab.classList.remove('active');
-      loginFormDiv.classList.add('hidden-form');
-      registerFormDiv.classList.remove('hidden-form');
-      if (regMsg) {
-        regMsg.innerHTML = `<i class="fas fa-flag-checkered"></i> Create your Furion garage account`;
-        regMsg.style.borderLeftColor = '#FF5722';
-      }
-      if (loginMsg) {
-        loginMsg.innerHTML = `<i class="fas fa-shield-alt"></i> Enter your credentials`;
-        loginMsg.style.borderLeftColor = '#FF5722';
-      }
+      regTabBtn.style.background = "#E84C22";
+      regTabBtn.style.color = "white";
+      loginTabBtn.style.background = "transparent";
+      loginTabBtn.style.color = "#4A5A7A";
+      loginPanelDiv.style.display = "none";
+      registerPanelDiv.style.display = "block";
     }
-    
-    loginTab.addEventListener('click', switchToLogin);
-    regTab.addEventListener('click', switchToRegister);
-    
-    // Prefill default login (123 / 123) exists in input fields, but we keep minimal.
-    // Ensure no extra strings like "default login: 123/123" appear anywhere.
-    // Also ensure that no demo/seamless/seamless demo strings exist in DOM (none)
-    if (loginUserInput.value !== "123") loginUserInput.value = "123";
-    if (loginPassInput.value !== "123") loginPassInput.value = "123";
-    
-    // Remove any residual aria-hidden text that could hint default
-    // extra check: also we removed all unnecessary footers with "demo"
-    // the extra-note now contains just "Biometric ready" and "Encrypted access"
-    console.log("Furion Cars secure portal — default master key active (123/123) but no visible hints.");
+    loginTabBtn.addEventListener('click', switchToLogin);
+    regTabBtn.addEventListener('click', switchToRegister);
+
+    // event binding
+    document.getElementById('doLoginBtnMain').addEventListener('click', handleLogin);
+    document.getElementById('doRegisterFinal').addEventListener('click', registerNewUser);
+    document.getElementById('logoutFromDash').addEventListener('click', logout);
+
+    // optional enter key login
+    const loginPassField = document.getElementById('loginPassword');
+    loginPassField.addEventListener('keypress', (e) => { if(e.key === 'Enter') handleLogin(); });
+    const loginUserF = document.getElementById('loginEmailUser');
+    loginUserF.addEventListener('keypress', (e) => { if(e.key === 'Enter') handleLogin(); });
+
+    // Prefill default values: Login default 123@furion.com / 123 as friendly base
+    // no extra negative texts, no driver text at all. It says "Login successful" directly.
+    console.log("Furion Cars with real-time email verification ready");
   })();
 </script>
 </body>
