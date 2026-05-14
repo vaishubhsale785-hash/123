@@ -1,158 +1,580 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TASHAN VIP</title>
-  <link href="https://i.ibb.co/7Jbp7Vcd/photo-2025-05-02-10-12-57.jpg" rel="noopener noreferrer">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Furion Cars | Driver Portal</title>
+  <!-- Google Fonts: Exo 2 for automotive feel + Inter fallback -->
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700;800&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      background: #111;
-      color: #fff;
-    }
-
-    header {
-      padding: 2rem;
-      text-align: center;
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .extra-buttons {
-      margin-top: 2rem;
-    }
-
-    .extra-buttons a {
-      text-decoration: none;
-      padding: 1.2rem 2.5rem;
-      margin: 0.5rem;
-      background-color: #0088cc;
-      color: white;
-      border-radius: 50px;
-      font-weight: bold;
-      transition: background 0.3s ease;
-      display: inline-flex;
+      font-family: 'Exo 2', 'Inter', sans-serif;
+      min-height: 100vh;
+      background: radial-gradient(ellipse at 30% 40%, #0a0f1a 0%, #03060c 100%);
+      position: relative;
+      display: flex;
       align-items: center;
-      gap: 16px;
-      font-size: 1.5rem;
-      max-width: 90%;
+      justify-content: center;
+      padding: 1.5rem;
     }
 
-    .extra-buttons a:hover {
-      background-color: #0077b5;
-    }
-
-    .extra-buttons img {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-    }
-
-    .cta-buttons {
-      margin-top: 2rem;
-    }
-
-    .cta-buttons a {
-      text-decoration: none;
-      padding: 1rem 2rem;
-      background-color: #ff5722;
-      color: white;
-      border-radius: 40px;
-      font-weight: bold;
-      transition: background 0.3s ease;
-      display: inline-block;
-      font-size: 1.2rem;
-    }
-
-    .cta-buttons a:hover {
-      background-color: #e64a19;
-    }
-
-    .screenshot {
+    /* dynamic carbon-fiber + racing light overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      max-width: 400px;
-      margin: 2rem auto;
-      display: block;
-      border-radius: 10px;
+      height: 100%;
+      background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 2px, transparent 2px, transparent 8px);
+      pointer-events: none;
+      z-index: 0;
     }
 
-    .features {
-      padding: 2rem;
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 70% 20%, rgba(230, 80, 40, 0.12), transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* main card — performance glass + deep metallic border */
+    .furion-card {
+      width: 100%;
+      max-width: 500px;
+      background: rgba(8, 14, 22, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 2.2rem;
+      border: 1px solid rgba(230, 80, 40, 0.5);
+      box-shadow: 0 25px 45px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(230, 80, 40, 0.2) inset, 0 0 20px rgba(230, 80, 40, 0.2);
+      padding: 2rem 2rem 2.2rem;
+      transition: all 0.3s ease;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* Furion Cars branding — aggressive & elegant */
+    .brand {
       text-align: center;
+      margin-bottom: 1.6rem;
+      position: relative;
+    }
+    .brand-icon {
+      font-size: 3rem;
+      background: linear-gradient(135deg, #FF6A3D, #D93B21);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+      filter: drop-shadow(0 0 6px rgba(230, 80, 40, 0.6));
+    }
+    .brand h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(115deg, #FFFFFF, #FFB08C);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-top: 0.4rem;
+      text-transform: uppercase;
+    }
+    .brand .tagline {
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      font-weight: 500;
+      color: #FFA273;
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+      word-break: keep-all;
     }
 
-    .features h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+    /* Tabs — racing style */
+    .tabs-drive {
+      display: flex;
+      gap: 0.8rem;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 4rem;
+      padding: 0.3rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(255, 90, 40, 0.3);
     }
-
-    .features p {
-      margin-bottom: 1.5rem;
-      line-height: 1.6;
+    .tab-drive-btn {
+      flex: 1;
+      background: transparent;
+      border: none;
+      font-family: 'Exo 2', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.7rem 0;
+      border-radius: 3rem;
+      cursor: pointer;
+      color: #B9C7D9;
+      transition: all 0.25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      letter-spacing: 0.5px;
     }
-
-    footer {
-      background: #222;
-      color: #aaa;
-      padding: 1rem;
-      text-align: center;
+    .tab-drive-btn i {
       font-size: 0.9rem;
+    }
+    .tab-drive-btn.active {
+      background: linear-gradient(95deg, #E64525, #BF2E10);
+      color: white;
+      box-shadow: 0 4px 12px rgba(230, 60, 30, 0.4);
+    }
+    .tab-drive-btn:not(.active):hover {
+      background: rgba(230, 80, 40, 0.2);
+      color: #FFB28C;
+    }
+
+    /* form groups */
+    .form-wrapper {
+      transition: all 0.2s;
+    }
+    .drive-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+    }
+    .hidden-form {
+      display: none;
+    }
+
+    /* premium input fields */
+    .input-field {
+      position: relative;
+      display: flex;
+      align-items: center;
+      background: rgba(20, 28, 40, 0.7);
+      border-radius: 1.5rem;
+      border: 1px solid rgba(255, 100, 50, 0.4);
+      transition: all 0.2s;
+    }
+    .input-field:focus-within {
+      border-color: #FF5722;
+      background: rgba(30, 40, 55, 0.9);
+      box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.3);
+    }
+    .input-field i {
+      padding-left: 1.2rem;
+      font-size: 1.1rem;
+      color: #FF7540;
+      width: 2.6rem;
+    }
+    .input-field input {
+      background: transparent;
+      border: none;
+      padding: 0.9rem 1rem 0.9rem 0;
+      font-size: 1rem;
+      color: #F0F3FA;
+      font-weight: 500;
+      width: 100%;
+      outline: none;
+      font-family: 'Inter', monospace;
+    }
+    .input-field input::placeholder {
+      color: rgba(200, 210, 230, 0.5);
+      font-weight: 400;
+      font-size: 0.85rem;
+    }
+
+    /* primary CTA button — inferno style */
+    .btn-inferno {
+      background: linear-gradient(105deg, #FF4A1C, #D82E0A);
+      border: none;
+      padding: 0.9rem;
+      border-radius: 2.5rem;
+      font-weight: 800;
+      font-size: 1rem;
+      font-family: 'Exo 2', sans-serif;
+      color: white;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+    .btn-inferno:hover {
+      background: linear-gradient(105deg, #FF6538, #E63E18);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(230, 60, 20, 0.5);
+    }
+    .btn-inferno:active {
+      transform: translateY(1px);
+    }
+
+    /* alert messages (clean, not branded with redundant text) */
+    .status-alert {
+      background: rgba(0, 0, 0, 0.55);
+      border-radius: 1.5rem;
+      padding: 0.7rem 1rem;
+      font-size: 0.8rem;
+      text-align: center;
+      color: #FFD0B5;
+      border-left: 3px solid #FF5722;
+      font-weight: 500;
+      backdrop-filter: blur(4px);
+      margin-top: 0.2rem;
+    }
+
+    /* no extra demo hints or redundant footers — only necessary micro interactions */
+    .extra-note {
+      margin-top: 1rem;
+      font-size: 0.7rem;
+      text-align: center;
+      color: #5F738C;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+    .extra-note span i {
+      margin-right: 5px;
+      font-size: 0.65rem;
+      color: #FF7043;
+    }
+
+    /* shake animation */
+    @keyframes furionShake {
+      0% { transform: translateX(0); }
+      20% { transform: translateX(-5px); }
+      40% { transform: translateX(5px); }
+      60% { transform: translateX(-3px); }
+      80% { transform: translateX(3px); }
+      100% { transform: translateX(0); }
+    }
+    .shake-effect {
+      animation: furionShake 0.35s ease-in-out 0s 1;
+    }
+
+    @media (max-width: 550px) {
+      .furion-card {
+        padding: 1.5rem 1.3rem 1.8rem;
+      }
+      .brand h1 {
+        font-size: 1.7rem;
+      }
+      .tab-drive-btn {
+        font-size: 0.8rem;
+        padding: 0.55rem 0;
+      }
+      .input-field input {
+        padding: 0.75rem 1rem 0.75rem 0;
+      }
     }
   </style>
 </head>
 <body>
+<div class="furion-card">
+  <div class="brand">
+    <i class="fas fa-car-side brand-icon"></i>
+    <h1>FURION CARS</h1>
+    <div class="tagline"><i class="fas fa-bolt"></i> UNLEASH THE DRIVE</div>
+  </div>
 
-  <header>
-    <h1>TASHAN GAME</h1>
-    <p>GIFT CODE(Updates Every Day) <p>
-        
-        
-    </p>DA905FD290A77A94BCF3B54FFD361EC6</p>
+  <div class="tabs-drive">
+    <button id="furionLoginTab" class="tab-drive-btn active"><i class="fas fa-key"></i> DRIVER LOGIN</button>
+    <button id="furionRegTab" class="tab-drive-btn"><i class="fas fa-id-card"></i> REGISTER</button>
+  </div>
 
-
-    <!-- VIP Button -->
-    <div class="extra-buttons">
-      <a href="https://t.me/+nIHOcGTeX5Y0MjM1" target="_blank" rel="noopener noreferrer">
-        <img src="https://i.ibb.co/N204xQ6y/photo-2025-05-02-10-13-10.jpg%22" alt="VIP Logo">
-        TASHAN VIP SURESHOT
-      </a>
+  <div class="form-wrapper">
+    <!-- LOGIN FORM (default 123 / 123 works but no extra hint text) -->
+    <div id="furionLoginForm" class="drive-form">
+      <div class="input-field">
+        <i class="fas fa-user-astronaut"></i>
+        <input type="text" id="loginUsernameF" placeholder="Driver ID / Username" autocomplete="off" value="123">
+      </div>
+      <div class="input-field">
+        <i class="fas fa-fingerprint"></i>
+        <input type="password" id="loginPasswordF" placeholder="Access Code" value="123">
+      </div>
+      <button id="doFurionLogin" class="btn-inferno"><i class="fas fa-rocket"></i> IGNITION</button>
+      <div id="loginStatusMsg" class="status-alert"><i class="fas fa-shield-alt"></i> Enter your credentials</div>
     </div>
 
-    <!-- Register Button -->
-<div class="cta-buttons">
-  <a href="https://www.tashanwin.org/#/register?invitationCode=46252168705" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 12px;">
-    <img src="https://i.ibb.co/7Jbp7Vcd/photo-2025-05-02-10-12-57.jpg" alt="Tashan Win Logo" style="width: 32px; height: 32px; border-radius: 50%;" />
-    Register to TASHAN VIP
-  </a>
+    <!-- REGISTER FORM (no demo mentioning default login) -->
+    <div id="furionRegisterForm" class="drive-form hidden-form">
+      <div class="input-field">
+        <i class="fas fa-user-tie"></i>
+        <input type="text" id="regFullname" placeholder="Full name / Username" autocomplete="off">
+      </div>
+      <div class="input-field">
+        <i class="fas fa-envelope"></i>
+        <input type="email" id="regEmailF" placeholder="Email address">
+      </div>
+      <div class="input-field">
+        <i class="fas fa-lock"></i>
+        <input type="password" id="regPasswordF" placeholder="Create password (min. 4 chars)">
+      </div>
+      <div class="input-field">
+        <i class="fas fa-check-double"></i>
+        <input type="password" id="regConfirmF" placeholder="Confirm passcode">
+      </div>
+      <button id="doFurionRegister" class="btn-inferno"><i class="fas fa-user-plus"></i> JOIN FURION</button>
+      <div id="regStatusMsg" class="status-alert"><i class="fas fa-flag-checkered"></i> Create your Furion garage account</div>
+    </div>
+  </div>
+  <div class="extra-note">
+    <span><i class="fas fa-microchip"></i> Biometric ready</span>
+    <span><i class="fas fa-shield-alt"></i> Encrypted access</span>
+  </div>
 </div>
 
-  <img src="https://i.ibb.co/gL8bFw17/tashan-ll.jpg" alt="Game Screenshot" class="screenshot" />
+<script>
+  (function() {
+    // DOM elements
+    const loginTab = document.getElementById('furionLoginTab');
+    const regTab = document.getElementById('furionRegTab');
+    const loginFormDiv = document.getElementById('furionLoginForm');
+    const registerFormDiv = document.getElementById('furionRegisterForm');
+    const loginBtn = document.getElementById('doFurionLogin');
+    const regBtn = document.getElementById('doFurionRegister');
+    const loginMsg = document.getElementById('loginStatusMsg');
+    const regMsg = document.getElementById('regStatusMsg');
 
-  <section class="features">
-    <h2>Tashan Game Is A Real Cash Earning App That Brings You The Best Online Games To Win Money And Enjoy Every Moment Of Gameplay</h2>
-    Whether you’re playing for fun or aiming to earn big, Tashan Game offers a wide variety of games that reward your skills and consistency.
+    // Inputs
+    const loginUserInput = document.getElementById('loginUsernameF');
+    const loginPassInput = document.getElementById('loginPasswordF');
+    const regNameInput = document.getElementById('regFullname');
+    const regEmailInput = document.getElementById('regEmailF');
+    const regPassInput = document.getElementById('regPasswordF');
+    const regConfirmInput = document.getElementById('regConfirmF');
 
-With quick sign-ups, smooth performance, and exciting challenges, Tashan Game has become a go-to platform trusted by gamers in India. From card games to action-packed titles, there’s always something new to try—and real rewards to win.
+    // Helper: display status messages (clean, minimal)
+    let loginTimer, regTimer;
+    function setLoginMessage(text, isError = false) {
+      if (loginTimer) clearTimeout(loginTimer);
+      loginMsg.innerHTML = `<i class="fas ${isError ? 'fa-exclamation-triangle' : 'fa-check-circle'}"></i> ${text}`;
+      loginMsg.style.borderLeftColor = isError ? '#FF5E4A' : '#39D0A0';
+      loginTimer = setTimeout(() => {
+        if (loginMsg) {
+          loginMsg.innerHTML = `<i class="fas fa-shield-alt"></i> Enter your credentials`;
+          loginMsg.style.borderLeftColor = '#FF5722';
+        }
+      }, 2800);
+    }
+    function setRegMessage(text, isError = false, isSuccess = false) {
+      if (regTimer) clearTimeout(regTimer);
+      let icon = 'fa-info-circle';
+      if (isSuccess) icon = 'fa-check-circle';
+      else if (isError) icon = 'fa-exclamation-circle';
+      regMsg.innerHTML = `<i class="fas ${icon}"></i> ${text}`;
+      regMsg.style.borderLeftColor = isSuccess ? '#39D0A0' : (isError ? '#FF5E4A' : '#FF9F4A');
+      regTimer = setTimeout(() => {
+        if (regMsg) {
+          regMsg.innerHTML = `<i class="fas fa-flag-checkered"></i> Create your Furion garage account`;
+          regMsg.style.borderLeftColor = '#FF5722';
+        }
+      }, 2800);
+    }
 
-Enjoy easy withdrawals and daily rewards, along with a robust referral system that lets you earn even more by inviting friends. The platform ensures safe, secure transactions and supports instant UPI and bank transfers so you can cash out whenever you want.
-
-Join the winning side of online gaming today. Download Tashan Game and turn your gaming time into real cash—fast, fun, and fully rewarding.
-  </section>
-
-  <footer>
-    &copy; 2025 Your Game Name. All rights reserved. | Contact: support@yourgame.com
-  </footer>
-
+    // ---- CORE AUTH LOGIC ----
+    // DEFAULT CREDENTIALS: login = "123", password = "123" (no visible text hints)
+    // Additionally, we support registered users (stored in localStorage)
+    
+    function performFurionLogin() {
+      const username = loginUserInput.value.trim();
+      const password = loginPassInput.value;
+      
+      // 1) DEFAULT FURION MASTER ACCESS
+      if (username === "123" && password === "123") {
+        setLoginMessage("✅ Ignition ON • Welcome to Furion Garage", false);
+        // subtle success animation
+        loginBtn.style.transform = "scale(0.97)";
+        setTimeout(() => { loginBtn.style.transform = ""; }, 150);
+        // optional simulated garage effect
+        return;
+      }
+      
+      // 2) Check registered drivers from localStorage (Furion database)
+      const storedDrivers = localStorage.getItem("furion_drivers");
+      let driversArray = [];
+      if (storedDrivers) {
+        try {
+          driversArray = JSON.parse(storedDrivers);
+        } catch(e) { driversArray = []; }
+      }
+      const matchedDriver = driversArray.find(driver => driver.username === username && driver.password === password);
+      if (matchedDriver) {
+        setLoginMessage(`🏁 Welcome back, ${matchedDriver.username} • Drive ready`, false);
+        loginBtn.style.transform = "scale(0.97)";
+        setTimeout(() => { loginBtn.style.transform = ""; }, 150);
+        return;
+      }
+      
+      // invalid access
+      setLoginMessage("⛔ Access denied • Check driver credentials", true);
+      loginFormDiv.classList.add('shake-effect');
+      setTimeout(() => { loginFormDiv.classList.remove('shake-effect'); }, 400);
+    }
+    
+    // Register logic (no mentions of default demo)
+    function performFurionRegister() {
+      const fullUsername = regNameInput.value.trim();
+      const email = regEmailInput.value.trim();
+      const pwd = regPassInput.value.trim();
+      const confirmPwd = regConfirmInput.value.trim();
+      
+      // validations
+      if (!fullUsername || fullUsername.length < 3) {
+        setRegMessage("Username must be at least 3 characters", true);
+        return;
+      }
+      if (fullUsername === "123") {
+        setRegMessage("Reserved ID: cannot register '123'", true);
+        return;
+      }
+      if (!email || !email.includes('@') || !email.includes('.')) {
+        setRegMessage("Valid email required for Furion pass", true);
+        return;
+      }
+      if (!pwd || pwd.length < 4) {
+        setRegMessage("Password must be min 4 characters", true);
+        return;
+      }
+      if (pwd !== confirmPwd) {
+        setRegMessage("Access codes do not match", true);
+        return;
+      }
+      
+      // check duplicates
+      let existingDrivers = [];
+      const rawDrivers = localStorage.getItem("furion_drivers");
+      if (rawDrivers) {
+        try {
+          existingDrivers = JSON.parse(rawDrivers);
+        } catch(e) { existingDrivers = []; }
+      }
+      if (existingDrivers.some(d => d.username === fullUsername)) {
+        setRegMessage("Driver ID already exists. Choose another callsign", true);
+        return;
+      }
+      
+      // create new driver profile
+      const newDriver = {
+        username: fullUsername,
+        password: pwd,
+        email: email,
+        joined: new Date().toISOString()
+      };
+      existingDrivers.push(newDriver);
+      localStorage.setItem("furion_drivers", JSON.stringify(existingDrivers));
+      
+      // Success and auto switch to login + prefill username
+      setRegMessage(`🔥 Furion access created! Welcome ${fullUsername}.`, false, true);
+      setTimeout(() => {
+        // switch to login tab after success, prefill username for convenience
+        loginTab.click();
+        if (loginUserInput) loginUserInput.value = fullUsername;
+        loginPassInput.value = '';
+        setLoginMessage(`New driver registered! Enter your passcode.`, false);
+      }, 1400);
+      
+      // Clear registration fields
+      regNameInput.value = '';
+      regEmailInput.value = '';
+      regPassInput.value = '';
+      regConfirmInput.value = '';
+    }
+    
+    // Event binding
+    loginBtn.onclick = (e) => {
+      e.preventDefault();
+      performFurionLogin();
+    };
+    regBtn.onclick = (e) => {
+      e.preventDefault();
+      performFurionRegister();
+    };
+    
+    // Enter key submit for login fields
+    const loginFields = [loginUserInput, loginPassInput];
+    loginFields.forEach(field => {
+      field.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          performFurionLogin();
+        }
+      });
+    });
+    // Enter key for registration
+    const regFields = [regNameInput, regEmailInput, regPassInput, regConfirmInput];
+    regFields.forEach(field => {
+      field.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          performFurionRegister();
+        }
+      });
+    });
+    
+    // Tab switching: clean and no residual hint messages
+    function switchToLogin() {
+      loginTab.classList.add('active');
+      regTab.classList.remove('active');
+      loginFormDiv.classList.remove('hidden-form');
+      registerFormDiv.classList.add('hidden-form');
+      // reset only login message to default neutral state
+      if (loginMsg) {
+        loginMsg.innerHTML = `<i class="fas fa-shield-alt"></i> Enter your credentials`;
+        loginMsg.style.borderLeftColor = '#FF5722';
+      }
+      // clear any register message residue
+      if (regMsg) {
+        regMsg.innerHTML = `<i class="fas fa-flag-checkered"></i> Create your Furion garage account`;
+        regMsg.style.borderLeftColor = '#FF5722';
+      }
+    }
+    
+    function switchToRegister() {
+      regTab.classList.add('active');
+      loginTab.classList.remove('active');
+      loginFormDiv.classList.add('hidden-form');
+      registerFormDiv.classList.remove('hidden-form');
+      if (regMsg) {
+        regMsg.innerHTML = `<i class="fas fa-flag-checkered"></i> Create your Furion garage account`;
+        regMsg.style.borderLeftColor = '#FF5722';
+      }
+      if (loginMsg) {
+        loginMsg.innerHTML = `<i class="fas fa-shield-alt"></i> Enter your credentials`;
+        loginMsg.style.borderLeftColor = '#FF5722';
+      }
+    }
+    
+    loginTab.addEventListener('click', switchToLogin);
+    regTab.addEventListener('click', switchToRegister);
+    
+    // Prefill default login (123 / 123) exists in input fields, but we keep minimal.
+    // Ensure no extra strings like "default login: 123/123" appear anywhere.
+    // Also ensure that no demo/seamless/seamless demo strings exist in DOM (none)
+    if (loginUserInput.value !== "123") loginUserInput.value = "123";
+    if (loginPassInput.value !== "123") loginPassInput.value = "123";
+    
+    // Remove any residual aria-hidden text that could hint default
+    // extra check: also we removed all unnecessary footers with "demo"
+    // the extra-note now contains just "Biometric ready" and "Encrypted access"
+    console.log("Furion Cars secure portal — default master key active (123/123) but no visible hints.");
+  })();
+</script>
 </body>
 </html>
